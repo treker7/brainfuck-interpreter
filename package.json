@@ -23,5 +23,8 @@
   "homepage": "https://github.com/treker7/brainfuck-interpreter#readme",
   "devDependencies": {
     "jasmine-node": "^3.0.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }

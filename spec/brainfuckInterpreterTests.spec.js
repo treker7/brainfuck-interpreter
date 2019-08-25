@@ -16,8 +16,4 @@ describe("BrainfuckInterpreter", function () {
     it("Interprets the HelloWorld Program from Wikipedia", function () {
         brainfuckInterpreter.interpret(brainfuckHelloWorldSourceCode);
     });
-
-    it("Compiles the HelloWorld Program from Wikipedia", function () {
-        brainfuckInterpreter.compile(brainfuckHelloWorldSourceCode);
-    });
 });
