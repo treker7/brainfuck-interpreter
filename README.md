@@ -2,7 +2,11 @@
 
 ##Installation:
 
-npm install --save-dev brainfuck-interpreter
+npm install --save-prod brainfuck-interpreter
 
 ## Usage:
 
+var brainfuckInterpreter = require("../brainfuckInterpreter");
+const brainfuckHelloWorldSourceCode =
+            "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+brainfuckInterpreter.interpret(brainfuckHelloWorldSourceCode);
