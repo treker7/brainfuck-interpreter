@@ -6,7 +6,7 @@ npm install --save-prod brainfuck-interpreter
 
 ## Usage:
 
-var brainfuckInterpreter = require("../brainfuckInterpreter");
+var brainfuckInterpreter = require("./brainfuckInterpreter");
 
 const brainfuckHelloWorldSourceCode =
     "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+.------.--------.>>+.>++.";
