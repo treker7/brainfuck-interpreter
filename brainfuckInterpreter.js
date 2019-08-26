@@ -4,7 +4,8 @@ const MEM_SIZE = 30000;
 const mem_arr = [];
 var data_ptr = 0;
 
-function init() {
+// initialize the data pointer and memory array
+var init = function(){
     data_ptr = 0;
     for (var i = 0; i < MEM_SIZE; i++) {
         mem_arr[i] = 0;
@@ -17,10 +18,10 @@ function init() {
  * @param {string} bfSourceCode - the brainfuck source code to be compiled
  * @returns {string} - the compiled JavaScript source code
  */
-var compile = function(bfSourceCode) {
+function compile(bfSourceCode) {
     init();
 
-    var jsSourceCode = '';
+    var jsSourceCode = '(function(ptr, arr, readline) {';
 
     const codeLength = bfSourceCode.length;
     for (var i = 0; i < codeLength; i++) {
@@ -28,32 +29,34 @@ var compile = function(bfSourceCode) {
 
         switch (currBfInstr) {
             case '>':
-                jsSourceCode += '++data_ptr;';
+                jsSourceCode += '++ptr;';
                 break;
             case '<':
-                jsSourceCode += '--data_ptr;';
+                jsSourceCode += '--ptr;';
                 break;
             case '+':
-                jsSourceCode += 'mem_arr[data_ptr] += 1;';
+                jsSourceCode += 'arr[ptr] += 1;';
                 break;
             case '-':
-                jsSourceCode += 'mem_arr[data_ptr] -= 1;';
+                jsSourceCode += 'arr[ptr] -= 1;';
                 break;
             case '.':
-                jsSourceCode += 'console.log(String.fromCharCode(mem_arr[data_ptr]));';
+                jsSourceCode += 'console.log(String.fromCharCode(arr[ptr]));';
                 break;
             case ',':
-                jsSourceCode += 'mem_arr[data_ptr] = readline().question().charCodeAt(0);';
+                jsSourceCode += 'arr[ptr] = readline.question().charCodeAt(0);';
                 break;
             case '[':
-                jsSourceCode += 'while(mem_arr[data_ptr]) {';
-            break;
+                jsSourceCode += 'while(arr[ptr]) {';
+                break;
             case ']':
                 jsSourceCode += '}';
-            break;
+                break;
             default: /* do nothing */
         }
     }
+
+    jsSourceCode += '}(data_ptr, mem_arr, readline));'
 
     return jsSourceCode;
 };
@@ -66,7 +69,8 @@ var compile = function(bfSourceCode) {
 var interpret = function(bfSourceCode) {
     init();
 
-    eval(compile(bfSourceCode));
+    var jsCode = compile(bfSourceCode);
+    eval(jsCode);
 };
 
 module.exports.interpret = interpret;
