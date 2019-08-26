@@ -5,7 +5,7 @@ const mem_arr = [];
 var data_ptr = 0;
 
 // initialize the data pointer and memory array
-var init = function(){
+var init = function() {
     data_ptr = 0;
     mem_arr.length = MEM_SIZE;
     mem_arr.fill(0);
@@ -18,8 +18,6 @@ var init = function(){
  * @returns {string} - the compiled JavaScript source code
  */
 function compile(bfSourceCode) {
-    init();
-
     var jsSourceCode = '(function(ptr, arr, readline) {';
 
     const codeLength = bfSourceCode.length;
@@ -66,6 +64,7 @@ function compile(bfSourceCode) {
  * @param {string} bfSourceCode - the brainfuck source code to be interpreted
  */
 var interpret = function(bfSourceCode) {
+    init();
     var jsCode = compile(bfSourceCode);
     eval(jsCode);
 };
