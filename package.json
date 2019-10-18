@@ -1,6 +1,6 @@
 {
   "name": "@treker7/brainfuck-interpreter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Brainfuck Programming Language Interpreter for JavaScript",
   "main": "brainfuckInterpreter.js",
   "scripts": {
